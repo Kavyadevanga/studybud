@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <!-- basic   -->
+    <meta charset="UTF-8">
+    <title>Study Bud</title>
+    <meta name="robots" content="index, follow"/>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <!-- css   -->	
+    <link type="text/css" rel="stylesheet" href="{% static 'css/plugins.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/color.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/dashboard-style.css' %}">
+
+    <!--  favicons  -->
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
+</head>
+<body>
+    <!--loader-->
+    <div class="loader-wrap">
+        <div class="loader-inner">
+            <svg>
+                <defs>
+                    <filter id="goo">
+                        <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur" />
+                        <feColorMatrix in="blur" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 5 -2" result="gooey" />
+                        <feComposite in="SourceGraphic" in2="gooey" operator="atop"/>
+                    </filter>
+                </defs>
+            </svg>
+        </div>
+    </div>
+    <!--loader end-->
+    <div id="main">
+        {% include 'header.html' %}
+            {% block content %}
+            {% endblock content %}
+
+
+    </div>
+
+    <!--=============== scripts  ===============-->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/plugins.js' %}"></script>
+    <script src="{% static 'js/scripts.js' %}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY_HERE&libraries=places"></script>
+    <script src="{% static 'js/map-single.js' %}"></script>
+    <script src="{% static 'js/dashboard.js' %}"></script>
+</body>
+</html>

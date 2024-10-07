@@ -1,0 +1,201 @@
+
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+<div id="wrapper">
+    <!-- content -->	
+    <div class="content">
+      
+        <!-- col-list-wrap -->
+        <section class="gray-bg small-padding ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="card-info smpar fl-wrap">
+                            <div class="box-widget-menu-btn smact"><i class="far fa-ellipsis-h"></i></div>
+                            <div class="show-more-snopt-tooltip bxwt">
+                                <a href="#"> <i class="fas fa-comment-alt"></i> Write a review</a>
+                                <a href="#"> <i class="fas fa-exclamation-triangle"></i> Report </a>
+                            </div>
+                            <div class="bg-wrap bg-parallax-wrap-gradien">
+                                <div class="bg" data-bg="images/bg/1.jpg" style="background-image: url(&quot;images/bg/1.jpg&quot;);"></div>
+                            </div>
+                            <div class="card-info-media">
+                                <div class="bg" data-bg="images/agency/agent/1.jpg" style="background-image: url(&quot;images/agency/agent/1.jpg&quot;);"></div>
+                            </div>
+                            <div class="card-info-content">
+                                <div class="agent_card-title fl-wrap">
+                                    <h4> {{room.name}} </h4>
+                                    <div class="geodir-category-location fl-wrap">
+                                        <h5><a href="agency-single.html">@ {{room.host}}</a></h5>
+                                    </div>
+                                </div>
+                                <div class="list-single-stats">
+                                    <ul class="no-list-style">
+                                        <li><span class="viewed-counter"><i class="fas fa-eye"></i> {{room.topic}} </span></li>
+                                       
+                                    </ul>
+                                </div>
+                                <div class="card-verified tolt" data-microtip-position="left" data-tooltip="Verified"><i class="fal fa-user-check"></i></div>
+                            </div>
+                        </div>
+                        <div class="list-single-main-container fl-wrap">
+                            <!-- list-single-main-item -->
+                            <div class="list-single-main-item fl-wrap">
+                                <div class="list-single-main-item-title">
+                                    <h3>About This Agent</h3>
+                                </div>
+                                <div class="list-single-main-item_content fl-wrap">
+                                    <p>{{room.description}}</p>
+                                </div>
+                            </div>
+                            <!-- list-single-main-item end -->             						
+                        </div>
+                       
+                    </div>
+                    <!-- col-md 8 end -->
+                    <!--  sidebar-->
+                    <div class="col-md-4">
+                        <!--box-widget-->
+                        <div class="box-widget bwt-first fl-wrap">
+                            <div class="box-widget-title fl-wrap box-widget-title-color color-bg no-top-margin">Agent Contacts</div>
+                            <div class="box-widget-content fl-wrap">
+                                <div class="contats-list clm fl-wrap">
+                                    <ul class="no-list-style">
+                                        <li><span><i class="fal fa-phone"></i> Phone :</span> <a href="#">+7(123)987654</a></li>
+                                        <li><span><i class="fal fa-envelope"></i> Mail :</span> <a href="#">MaversRealEstate@domain.com</a></li>
+                                        <li><span><i class="fal fa-map-marker"></i> Adress :</span> <a href="#"> 70 Bright St New York, USA</a></li>
+                                        <li><span><i class="fal fa-browser"></i> Website :</span> <a href="#">themeforest.net</a></li>
+                                    </ul>
+                                </div>
+                                <div class="profile-widget-footer fl-wrap">
+                                    <div class="card-info-content_social ">
+                                        <ul>
+                                            <li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                                            <li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                                            <li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                                            <li><a href="#" target="_blank"><i class="fab fa-vk"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <a href="#sec-contact" class="custom-scroll-link tolt csls" data-microtip-position="left" data-tooltip="Write Message"><i class="fal fa-paper-plane"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--box-widget end --> 									
+                                  									
+                    </div>
+                    <!--   sidebar end-->	
+                       
+                    
+                </div>
+                <div class="dashboard-list-box fl-wrap" style="margin-top:30px">
+                    <div class="dasboard-widget-title fl-wrap">
+                        <h5><i class="fas fa-comment-alt"></i>Conversation</h5>
+                        <a href="#" class="mark-btn  tolt" data-microtip-position="bottom" data-tooltip="Mark all as read"><i class="far fa-comment-alt-check"></i> </a>
+                    </div>
+                    <div class="chat-wrapper fl-wrap" >
+                        <!-- chat-box-->
+                        <div class="chat-box fl-wrap">
+                            <div class="chat-box-scroll fl-wrap full-height" data-simplebar="init"><div class="simplebar-wrapper" style="margin: 0px -35px 0px 0px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: -15px; bottom: 0px;"><div class="simplebar-content" style="padding: 0px 35px 0px 0px; height: 100%; overflow: hidden scroll;">
+                                <!-- message-->
+                                 {% for message in room_messages %}
+                                <div class="chat-message   fl-wrap">
+                                    <div class="dashboard-message-avatar">
+                                        <img src="images/avatar/1.jpg" alt="">
+                                        <span class="chat-message-user-name cmun_sm">{{message.user}} </span>
+                                    </div>
+                                    <span class="massage-date">{{message.created_at|timesince}} ago 
+                                        {% if request.user == message.user %}
+                                        <a href="{% url 'delete-message' message.id %}">delete</a> 
+                                        {% endif %} </span>
+                                   
+                                    <p>{{message.body}}</p>
+                                </div>
+                                {% endfor %}
+                                <!-- message end-->
+                               
+                              
+                              
+                            </div></div></div><div class="simplebar-placeholder" style="width: 878px; height: 486px;"></div></div><div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="transform: translate3d(0px, 0px, 0px); visibility: hidden;"></div></div><div class="simplebar-track simplebar-vertical" style="visibility: visible;"><div class="simplebar-scrollbar" style="height: 474px; transform: translate3d(0px, 0px, 0px); visibility: visible;"></div></div></div>
+                        </div>
+                        {% if request.user.is_authenticated %}
+                        <div class="chat-widget_input">
+                            <form method="POST" action="">
+                            {% csrf_token %}
+                            <textarea name='body' placeholder="Write your message here.."></textarea>
+                            <button type="submit" class="color-bg"><i class="fal fa-paper-plane"></i></button>
+                            </form>
+                        </div>
+                        {% endif %}
+                        <!-- chat-box end-->
+                        <!-- chat-contacts-->
+                        <div class="chat-contacts">
+                            <!-- chat-contacts-item-->
+                             {% for user in participants %}
+                            <a class="chat-contacts-item" href="#">
+                                <div class="dashboard-message-avatar">
+                                    <img src="images/avatar/1.jpg" alt="">
+                                </div>
+                                <div class="chat-contacts-item-text">
+                                    <h4>@{{ user.username }}</h4>
+                                    <span>27 Dec 2018 </span>
+                                </div>
+                            </a>
+                            {% endfor %}
+                            <!-- chat-contacts-item -->
+                           
+                          
+                           
+                           
+                          
+                        </div>
+                        <!-- chat-contacts end-->
+                    </div>
+                    <!-- dashboard-list-box end-->			
+                </div>
+            </div>
+            
+            <div class="limit-box fl-wrap"></div>
+            
+        </section>
+        
+    </div>
+    
+    <!-- content end -->	
+    <!-- subscribe-wrap -->	
+    <div class="subscribe-wrap fl-wrap">
+        <div class="container">
+            <div class="subscribe-container fl-wrap color-bg">
+                <div class="pwh_bg"></div>
+                <div class="mrb_dec mrb_dec3"></div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="subscribe-header">
+                            <h4>newsletter</h4>
+                            <h3>Sign up for newsletter and get latest news and update</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-1"></div>
+                    <div class="col-md-5">
+                        <div class="footer-widget fl-wrap">
+                            <div class="subscribe-widget fl-wrap">
+                                <div class="subcribe-form">
+                                    <form id="subscribe" novalidate="true">
+                                        <input class="enteremail fl-wrap" name="EMAIL" id="subscribe-email" placeholder="Enter Your Email" spellcheck="false" type="text">
+                                        <button type="submit" id="subscribe-button" class="subscribe-button color-bg">  Subscribe</button>
+                                        <label for="subscribe-email" class="subscribe-message"></label>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- subscribe-wrap end -->	
+    <!-- footer -->	
+   {% include 'footer.html' %}
+    <!-- footer end -->
+</div>
+{% endblock content %}

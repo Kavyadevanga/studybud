@@ -1,0 +1,12 @@
+ 
+                                    <p class='title'>BROWSE TOPIC </p>
+                                    <div class="dashboard-stats fl-wrap">
+                                        <i>Follow</i>
+                                        <h4><a href="{% url 'index' %}">All</a></h4>
+                                    </div>
+                                    {% for topic in topics %}
+                                    <div class="dashboard-stats fl-wrap">
+                                        <i>Follow</i>
+                                        <h4><a href="{% url 'index' %}?q={{topic.name}}">{{topic.name}}</a></h4>
+                                    </div>
+                                    {% endfor %}

@@ -1,0 +1,113 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+<div id="wrapper">
+    <!-- content -->	
+    <div class="content">
+        
+        
+        <div class="gray-bg small-padding fl-wrap">
+            <div class="container">
+                
+                <div class="row">
+                   
+                    <div class="col-md-1"></div>
+                    <!--  listing-single content -->
+                    <div class="col-md-10">
+                        
+                       
+                        
+                        <div class="list-single-main-wrapper fl-wrap" >
+                            {% if messages %}
+                            <div class="notification success-notif  fl-wrap" style="margin-bottom:20px">
+                                {% for message in messages %}
+                                <p>{{message}}</p>
+                                <a class="notification-close" href="#"><i class="fal fa-times"></i></a>
+                                {% endfor %}
+                            </div>
+                            {%endif %}
+                           
+                            <div class="list-single-main-container fl-wrap" id="sec3">
+                               
+                                <!-- list-single-main-item -->
+                                
+                                <div class="list-single-main-item list-single-main-item-custom fl-wrap">
+                                    <div class="main-register-header color-bg">
+                                        <div class="main-register-logo fl-wrap">
+                                            <img src="/static/images/white_logo.png" alt="">
+                                        </div>
+                                        <div class="main-register-bg">
+                                            <div class="mrb_pin"></div>
+                                            <div class="mrb_pin mrb_pin2"></div>
+                                        </div>
+                                        <div class="mrb_dec"></div>
+                                        <div class="mrb_dec mrb_dec2"></div>
+                                    </div>
+                                    <div class="main-register">
+                                        
+                                        <!--tabs -->
+                                        <div class="login-tabs-container">
+                                            <div class="tab">
+                                                <!--tab -->
+                                                <div id="tab-1" class="tab-content first-tab">
+                                                    <div class="custom-form">
+                                                        <div class="login-header color-blue">
+                                                            <h5>Log in </h5>
+                                                            </div>
+                                                        <form method="post" action="/login/">
+                                                            {% csrf_token %}
+                                                            <label>Email Address * <span class="dec-icon"><i class="fal fa-user"></i></span></label>
+                                                            <input name="username" type="text" required="" placeholder="Enter Username">
+                                                            <div class="pass-input-wrap fl-wrap">
+                                                                <label>Password * <span class="dec-icon"><i class="fal fa-key"></i></span></label>
+                                                                <input name="password" type="password" required="" placeholder="Enter Paasword">
+                                                                <span class="eye" style="top:41px;"><i class="fal fa-eye"></i> </span>
+                                                                <div class="lost_password">
+                                                                    <a href="#">Forgot Password?</a>
+                                                                </div>
+                                                                <div class="filter-tags">
+                                                                    <input id="check-a3" type="checkbox" name="remember_me" value="on">
+                                                                    <label for="check-a3">Remember me</label>
+                                                                </div>
+                                                            </div>
+                                                            <button type="submit" class="log_btn color-bg"> Log in </button>
+                                                        </form>
+
+                                                        
+
+
+
+                                                    </div>
+                                                </div>
+                                                <!--tab end -->
+                                            </div>
+                                            <!--tabs end -->
+                                            <div class="fl-wrap" style="margin-top:20px">
+                                                <p class="login-help-text">Haven't signed up yet? <a href="{% url 'register' %}" class="color-blue">Sign Up</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- list-single-main-item end -->                                          
+                                                                  
+                                                                        
+                            </div>
+
+                           
+                        </div>
+                    </div>
+                    <!-- listing-single content end-->
+                                               
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <!-- content end -->	
+   
+</div>
+{% include 'footer.html' %}
+
+
+{% endblock content %}

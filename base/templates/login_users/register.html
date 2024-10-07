@@ -1,0 +1,111 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+<div id="wrapper">
+    <div class="content">
+        <div class="gray-bg small-padding fl-wrap">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10">
+                        <div class="list-single-main-wrapper fl-wrap">
+                            <div class="list-single-main-container fl-wrap" id="sec3">
+                                {% if messages %}
+                                <div class="notification success-notif fl-wrap">
+                                    {% for message in messages %}
+                                    <p>{{ message }}</p>
+                                    <a class="notification-close" href="#"><i class="fal fa-times"></i></a>
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                                <div class="list-single-main-item list-single-main-item-custom fl-wrap">
+                                    <div class="main-register-header color-bg">
+                                        <div class="main-register-logo fl-wrap">
+                                            <img src="{% static 'images/white_logo.png' %}" alt="">
+                                        </div>
+                                        <div class="main-register-bg">
+                                            <div class="mrb_pin"></div>
+                                            <div class="mrb_pin mrb_pin2"></div>
+                                        </div>
+                                        <div class="mrb_dec"></div>
+                                        <div class="mrb_dec mrb_dec2"></div>
+                                    </div>
+                                    <div class="main-register">
+                                        <div class="login-tabs-container">
+                                            <div class="tab">
+                                                <div id="tab-1" class="tab-content first-tab">
+                                                    <div class="custom-form">
+                                                        <div class="login-header color-blue">
+                                                            <h5>Register</h5>
+                                                        </div>
+                                                        <form method="post" action="{% url 'register' %}">
+                                                            {% csrf_token %}
+                                                            <div class="form-group">
+                                                                <label>Username <span class="dec-icon"><i class="fal fa-user"></i></span></label>
+                                                                {{ form.username }}
+                                                                {% if form.username.errors %}
+                                                                <div class="alert alert-danger">
+                                                                    {% for error in form.username.errors %}
+                                                                        <p>{{ error }}</p>
+                                                                    {% endfor %}
+                                                                </div>
+                                                            {% endif %}
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Email <span class="dec-icon"><i class="fal fa-envelope"></i></span></label>
+                                                                {{ form.email }}
+                                                                {% if form.email.errors %}
+                                                                <div class="alert alert-danger">
+                                                                    {% for error in form.email.errors %}
+                                                                        <p>{{ error }}</p>
+                                                                    {% endfor %}
+                                                                </div>
+                                                            {% endif %}
+                                                            </div>
+                                                            <div class="pass-input-wrap fl-wrap form-group">
+                                                                <label>Password <span class="dec-icon"><i class="fal fa-key"></i></span></label>
+                                                                {{ form.password1 }}
+                                                                {% if form.password1.errors %}
+                                                                <div class="alert alert-danger">
+                                                                    {% for error in form.password1.errors %}
+                                                                        <p>{{ error }}</p>
+                                                                    {% endfor %}
+                                                                </div>
+                                                            {% endif %}
+                                                                <span class="eye" style="top:41px;"><i class="fal fa-eye"></i></span>
+                                                            </div>
+                                                            <div class="pass-input-wrap fl-wrap form-group">
+                                                                <label>Confirm Password <span class="dec-icon"><i class="fal fa-key"></i></span></label>
+                                                                {{ form.password2 }}
+                                                                {% if form.password2.errors %}
+                                                                <div class="alert alert-danger">
+                                                                    {% for error in form.password2.errors %}
+                                                                        <p>{{ error }}</p>
+                                                                    {% endfor %}
+                                                                </div>
+                                                            {% endif %}
+                                                                <span class="eye" style="top:41px;"><i class="fal fa-eye"></i></span>
+                                                            </div>
+                                                            <button type="submit" class="log_btn color-bg">Register</button>
+                                                        </form>
+                                                       
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="fl-wrap" style="margin-top:20px">
+                                                <p class="login-help-text">Already signed up yet? <a href="{% url 'login' %}" class="color-blue">Login</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% include 'footer.html' %}
+{% endblock content %}

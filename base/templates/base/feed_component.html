@@ -1,0 +1,35 @@
+<div id="tab-listing" class="tab-content first-tab">
+    {% for room in rooms %}
+    <!-- listing-item-wrap-->
+    <div class="listing-item-container one-column-grid-wrap  box-list_ic fl-wrap">
+        <!-- listing-item -->
+        <div class="listing-item">
+            <article class="geodir-category-listing fl-wrap">
+               
+                <div class="geodir-category-content fl-wrap">
+                    <h3 class="title-sin_item"><a href="listing-single.html"><a href="{% url 'room' room.id %}">{{room.name}}</a></h3>
+                    
+                    {% if room.description %}
+                    <p>{{ room.description}}</p>
+                    {% endif %}
+                    
+                    <div class="geodir-category-footer fl-wrap">
+                        <a href="{% url 'profile' room.host.id %}" class="gcf-company"><img src="images/avatar/1.jpg" alt=""><span>@ {{ room.host.username }}</span></a>
+                        {% if request.user == room.host %}
+                        <a href="{% url 'update-room' room.id %}" class="edit-delete"> Edit </a>
+                        <a href="{% url 'delete-room' room.id %}" class="edit-delete"> Delete </a>
+                        {% endif %}
+                        <a class="rate-review"> {{ room.topic }} </a>
+                        
+                        
+                    </div>
+                </div>
+            </article>
+        </div>
+        <!-- listing-item end-->	
+                                   
+    </div>
+    {% endfor %}
+    <!-- listing-item-wrap end-->
+                       
+</div>
